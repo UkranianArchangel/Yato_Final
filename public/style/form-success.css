@@ -1,0 +1,17 @@
+body {
+  background: #fff;
+}
+
+.main_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.main_wrapper p {
+  text-align: center;
+  height: auto;
+  font-size: 30px;
+  max-width: 500px;
+}
