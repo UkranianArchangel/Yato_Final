@@ -77,14 +77,14 @@ gulp.task('watch', () => {
   gulp.watch('public/*.js', gulp.series('scripts'));
   gulp.watch('public/*.css', gulp.series('styles'));
   gulp.watch('public/*.html', gulp.series('copy-html'));
-});фыв
+});
 
 gulp.task('build', function () {
   return gulp.src('public/app.js') // Specify the source files to be transpiled
     .pipe(babel({
       presets: ['@babel/preset-env'],
     }))
-    .pipe(gulp.dest('dist')); // Specify the destination directory for the transpiled files
+    .pipe(gulp.dest('build')); // Specify the destination directory for the transpiled files
 })
 
 // Define the default task that runs all other tasks
