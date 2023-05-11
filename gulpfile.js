@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import  babel from 'gulp-babel';
 import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import cleanCSS from 'gulp-clean-css';
@@ -7,10 +8,14 @@ import replace from 'gulp-replace';
 import imagemin from 'gulp-imagemin';
 import nodemon from 'gulp-nodemon';
 
+
+
+
 // Define a task to bundle and minify JavaScript files
 gulp.task('scripts', () => {
   return gulp.src('public/scripts.js') // Adjust the source directory if needed
     .pipe(concat('scripts.js'))
+    .pipe(babel())
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('build/public'));
@@ -58,13 +63,6 @@ gulp.task('build-svg', function () {
     .pipe(gulp.dest('build/svg')); // Update the destination folder where the optimized images will be saved
 });
 
-gulp.task('build', function () {
-  return gulp.src('public/app.js') // Specify the source files to be transpiled
-    .pipe(babel({
-      presets: ['@babel/preset-env']
-    }))
-    .pipe(gulp.dest('dist')); // Specify the destination directory for the transpiled files
-})
 
 gulp.task('start', function (done) {
   nodemon({
@@ -79,7 +77,15 @@ gulp.task('watch', () => {
   gulp.watch('public/*.js', gulp.series('scripts'));
   gulp.watch('public/*.css', gulp.series('styles'));
   gulp.watch('public/*.html', gulp.series('copy-html'));
-});
+});фыв
+
+gulp.task('build', function () {
+  return gulp.src('public/app.js') // Specify the source files to be transpiled
+    .pipe(babel({
+      presets: ['@babel/preset-env'],
+    }))
+    .pipe(gulp.dest('dist')); // Specify the destination directory for the transpiled files
+})
 
 // Define the default task that runs all other tasks
 gulp.task('default', gulp.parallel(
