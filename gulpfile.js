@@ -84,7 +84,7 @@ gulp.task('build', function () {
     .pipe(babel({
       presets: ['@babel/preset-env'],
     }))
-    .pipe(gulp.dest('build')); // Specify the destination directory for the transpiled files
+    .pipe(gulp.dest('dist')); // Specify the destination directory for the transpiled files
 })
 
 // Define the default task that runs all other tasks
